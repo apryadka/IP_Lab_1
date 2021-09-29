@@ -52,5 +52,40 @@ namespace SuperLibrary
             }
         }
 
+        /// <summary>
+        /// Seps(x,eps)
+        /// </summary>
+        /// <param name="xarg">argument of the Seps function</param>
+        /// <param name="eps">зprecision</param>
+        /// <returns>returns the sum of the series</returns>
+        public static double Seps(double xarg, double eps)
+        {
+            try
+            {
+                double previous, current;
+                double result = 0.0;
+                int n = 0;
+
+                if (xarg > 0 && eps > 0)
+                {
+                    current = Math.Pow(xarg, 4 * n + 1) / (4 * n + 1);
+                    result += current;
+                    n++;
+                    do
+                    {
+                        previous = current;
+                        current = Math.Pow(xarg, 4 * n + 1) / (4 * n + 1);
+                        result += current;
+                        n++;
+                    } while (Math.Abs(current - previous) > eps);
+                }
+                return result;
+            }
+            catch (ArgumentException e)
+            {
+                throw new ArgumentException(e.StackTrace);
+            }
+        }
+
     }
 }
