@@ -17,7 +17,7 @@ namespace SuperLibrary
                 {
                     return Convert.ToDouble(kilogram / 1000);
                 }
-                else { return 0.0; }
+                return 0.0;
             }
             catch (ArgumentException e)
             {
@@ -25,5 +25,32 @@ namespace SuperLibrary
             }
           
         }
+
+        /// <summary>
+        /// Summ(n,a)
+        /// </summary>
+        /// <param name="n">the number of members of the Summ</param>
+        /// <param name="a">argument of the Summ function</param>
+        /// <returns>returns the sum of the series</returns>
+        public static double Summ(int n, double a)
+        {
+            try
+            {
+                double result = 0.0;
+                if (n > 0.0 && a > 0.0)
+                {
+                    for (int i = 1; i <= n; i++)
+                    {
+                        result += 1 / Math.Pow(a, 2 * i - 2);
+                    }
+                }
+                return result;
+            }
+            catch (ArgumentException e)
+            {
+                throw new ArgumentException(e.StackTrace);
+            }
+        }
+
     }
 }
